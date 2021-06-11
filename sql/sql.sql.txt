@@ -1,0 +1,52 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+DROP TABLE IF EXISTS `Hotel`;
+CREATE TABLE IF NOT EXISTS `Hotel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `adresse` varchar(255) DEFAULT NULL,
+  `nom` varchar(50) DEFAULT NULL,
+  `telephone` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `Directeur`;
+CREATE TABLE IF NOT EXISTS `Directeur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) DEFAULT NULL,
+  `prenom` varchar(50) DEFAULT NULL,
+  `hotel_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK7s0pphqt1sn6j2orb3lcp7eo4` (`hotel_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `Chambre`;
+CREATE TABLE IF NOT EXISTS `Chambre` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `etage` int(11) DEFAULT NULL,
+  `num_chambre` int(11) DEFAULT NULL,
+  `superficie` double DEFAULT NULL,
+  `type` varchar(128) DEFAULT NULL,
+  `hotel_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKaky3rlylfxbs2hgwjcwgjkghc` (`hotel_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `Salarie`;
+CREATE TABLE IF NOT EXISTS `Salarie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `experience` double DEFAULT NULL,
+  `nom` varchar(50) DEFAULT NULL,
+  `prenom` varchar(50) DEFAULT NULL,
+  `salaire` double DEFAULT NULL,
+  `directeur_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK3ecbp5olnsljwm8tdaxqy1xn3` (`directeur_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+INSERT INTO Hotel VALUES (1, "14 rue des marteaux", "Hotel des impasses", "07 07 07 50 23");
+INSERT INTO Directeur VALUES (1, "Hugo", "Cassis", 1);
+INSERT INTO Salarie VALUES (1, "expert", "Martin", "Quentin", 1500, 1);
+INSERT INTO Salarie VALUES (2, "debutant", "Berger", "Maxime", 2000, 1);
+INSERT INTO Salarie VALUES (3, "inter", "Luter", "Dimitrie", 900, 1);
